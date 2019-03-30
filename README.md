@@ -1,5 +1,5 @@
 # Curso de git
-****
+
 ## Principais Conceitos
 
 - **Commit:** Realiza uma mudança no projeto; mais específicamente, armazena uma mudança no banco de dados de uma forma que possa ser incorporada em versões futuras.
@@ -22,7 +22,7 @@
 > É uma das ferramentas mais importantes do desenvolvimento de software.
 
 Serve para:
-1. Manter hsitórico do projeto;
+1. Manter histórico do projeto;
 2. Controlar a concorrência de edição;
 3. Manter váriações do projeto.
 
@@ -47,3 +47,33 @@ Serve para:
 | Modificado     | Modifield |
 | Preparado      | Staged    |
 | Consolidado    | Commited  |
+
+## Comandos
+
+### Configuração Básica
+
+`git config --global user.name nome` Definir nome do usuário.
+`git config --global user.email email@email.com` Definir e-mail do usuário.
+`git config --global core.editor editor` Definir editor de texto.
+`git config --list` Listar todas as configurações
+`git config --list --global` Lista todas as configurações globais.
+`git config --global --edit` Abre o arquivo de configurações para edição.
+
+### Comandos Básicos
+
+`git init` Inicializa um novo repositório.
+`git status` Mostra o estado dos arquivos dentro do repositório.
+`git log` Lista todos commits feitos no repositório.
+`git log --graph` Lista todos commits feitos no repositório junto com a reprentação dos branches.
+`git add` Adiciona arquivos para o estado de staged.
+`git commit` Guarda uma versão para o repositório.
+`git push` Envia os commits para um repositório remoto.
+`git diff` Apresenta as diferenças entre commits.
+`git diff HEAD~1` Mostra as diferenças da versão atual (HEAD) com a versão anterior.
+
+### Histórico e Conflitos
+
+`git clone https://github.com/usuario/repositorio.git`
+`git pull`
+`git checkout --arquivo`
+`git checkout HEAD --arquivo`

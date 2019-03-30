@@ -52,28 +52,36 @@ Serve para:
 
 ### Configuração Básica
 
-`git config --global user.name nome` Definir nome do usuário.
-`git config --global user.email email@email.com` Definir e-mail do usuário.
-`git config --global core.editor editor` Definir editor de texto.
-`git config --list` Listar todas as configurações
-`git config --list --global` Lista todas as configurações globais.
-`git config --global --edit` Abre o arquivo de configurações para edição.
+- `git config --global user.name nome` Definir nome do usuário.
+- `git config --global user.email email@email.com` Definir e-mail do usuário.
+- `git config --global core.editor editor` Definir editor de texto.
+- `git config --list` Listar todas as configurações
+- `git config --list --global` Lista todas as configurações globais.
+- `git config --global --edit` Abre o arquivo de configurações para edição.
 
 ### Comandos Básicos
 
-`git init` Inicializa um novo repositório.
-`git status` Mostra o estado dos arquivos dentro do repositório.
-`git log` Lista todos commits feitos no repositório.
-`git log --graph` Lista todos commits feitos no repositório junto com a reprentação dos branches.
-`git add` Adiciona arquivos para o estado de staged.
-`git commit` Guarda uma versão para o repositório.
-`git push` Envia os commits para um repositório remoto.
-`git diff` Apresenta as diferenças entre commits.
-`git diff HEAD~1` Mostra as diferenças da versão atual (HEAD) com a versão anterior.
+- `git init <repositório>` Inicializa um novo repositório.
+- `git status` Mostra o estado dos arquivos dentro do repositório.
+- `git log` Lista todos commits feitos no repositório.
+- `git log --graph` Lista todos commits feitos no repositório junto com a reprentação dos branches.
+- `git show commit` Mostra as informaçãoes do commit.
+- `git add` Adiciona arquivos para o estado de staged.
+- `git commit` Guarda uma versão para o repositório.
+- `git push` Envia os commits para um repositório remoto.
+- `git diff` Apresenta as diferenças entre commits.
+- `git diff HEAD~1` Mostra as diferenças da versão atual (HEAD) com a versão anterior.
 
 ### Histórico e Conflitos
 
-`git clone https://github.com/usuario/repositorio.git`
-`git pull`
-`git checkout --arquivo`
-`git checkout HEAD --arquivo`
+- `git clone https://github.com/usuario/repositorio.git` Baixa o repositório remoto, serve como uma maneira alternativa de inicializar um repositório e já vem com o remote configurado.
+- `git pull` Baixa as alterações do repositório remoto que não se encontram no repositório local. *mantem o repositório sincronizado com os ultimos commits de uma branch*.
+- `git checkout <commit> --arquivo` Permite ver o estado de um arquivo ou todo o diretório em um determinado commit.
+- `git checkout --arquivo` Ignora as mudanças feitas no arquivo *que não estejam em staged*.
+- `git checkout HEAD --arquivo` Desfaz todas as alterações até o ultimo commit *incluindo os arquivos em staged*.
+- `git revert <commit>` Cria um novo commit desfazendo as alterações de um commit específico.
+- `git reset` Reseta o repositório para um determinado commit (por padrão, usa-se --soft).
+  - `git reset --soft` Ignora o commit, mas as modificações no arquivo continuarão e o mesmo se encontra no estado de staged.
+  - `git reset --mixed` Ignora o commit, mas o arquivo estará no estado de modified
+  - `git reset --hard` Ignora tudo no commit.
+-

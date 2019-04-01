@@ -8,10 +8,15 @@
 - **Repositório:** Onde armazena-seo histórico do projeto.
 - **Diretório de Trabalho:** É um diretório monitorado pelo controle de versão que contém os arquivos do projeto.
 - **Configuração:** É o estado dos arquivos do projeto.
-- **Revisão:** É uma configuração registrada no repositório.
+- **Revisão:** É uma configuração registrada no 
+- repositório.
 - **Rastreabilidade:** É poder seguir o trajeto de uma solicitação de mudança desde que foi proposta até o momento que voi implementada.
 - **Changeset:** Diferença entre duas configurações.
 - **Versão:** Revisão usada em produção.
+- **Merge:** Aplica os commits de uma branch para a branch atual, encontra um commit em comum entre as branches (base) e adiciona os commits que a branch atual não posui (caso não existam) em um commit de merge.
+- **Rebase** É semelhante ao merge porém é diferente no modo em que os commits são aplicados. No rebase, os commits a frente da base são temporariamente removidos e os commits da outra branch são aplicados, por os commits da branch são adicionados. 
+- **Fetch:** Baixa as atualizações do remoto, mas não aplica elas.
+- **Tags:** Uteis para definir versões do projeto, semelhante as branches porém não recebe mais commits, guardando um estado do repositório.
 
 ## Serviços Fundamentais
 
@@ -84,4 +89,15 @@ Serve para:
   - `git reset --soft` Ignora o commit, mas as modificações no arquivo continuarão e o mesmo se encontra no estado de staged.
   - `git reset --mixed` Ignora o commit, mas o arquivo estará no estado de modified
   - `git reset --hard` Ignora tudo no commit.
--
+
+### Branching, Merge e Rebase
+
+- `git branch` Lista todas as branches.
+- `git branch <nome>` Cria uma nova branch.
+- `git branch -d <nome>` Remove uma branch.
+- `git checkout <branch>` Altera para uma branch.
+- `git merge <branch>` Faz o merge entre as branches.
+- `git rebase <branch>` Faz o rebase entre as branches.
+- `git fetch` Faz o fetch no repositório.
+- `git tag [nome tag]` Cria uma tag.
+- `git push <remoto> <tag>` Envia a tag para o repositório remoto.

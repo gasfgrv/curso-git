@@ -36,6 +36,7 @@ Serve para:
 - **Global:** Vale para todos os repositórios do usuário, a configuração deste nível sobreescreve a configuração de sistemas.
 - **Local:** É o mais específico e vale apenas para o repositório que está sendo usado, sobreescrevendo as configurações dos outros níveis. A configuração do nível local costuma ser gerada automaticamente durante a clonagem ou inicialização do repositório, geralmente contém o caminho original para o repositório que é usado na sincronização de repositórios e etc.
 
+> **Arquivos de configuração (Linux)**
 > - **Local:** `repositório/.git/config`
 > - **Global:** `$HOME/.gitconfig`
 > - **Local:** `/etc/gitconfig`
@@ -73,9 +74,11 @@ Serve para:
 - `git show commit` Mostra as informaçãoes do commit.
 - `git add` Adiciona arquivos para o estado de staged.
 - `git commit` Guarda uma versão para o repositório.
+- `git commit --amend` Altera o último commit, tanto a mensagem de commit quanto a adição de arquivos.
 - `git push` Envia os commits para um repositório remoto.
 - `git diff` Apresenta as diferenças entre commits.
 - `git diff HEAD~1` Mostra as diferenças da versão atual (HEAD) com a versão anterior.
+- `git blame <arquivo>` Mostra as alterações feitas em um arquivo linha por linha. Mostra o autor e o commit onde foi feita aquela linha.
 
 ### Histórico e Conflitos
 
@@ -101,3 +104,18 @@ Serve para:
 - `git fetch` Faz o fetch no repositório.
 - `git tag [nome tag]` Cria uma tag.
 - `git push <remoto> <tag>` Envia a tag para o repositório remoto.
+- `git fetch origin pull/<ID>/head:<branch>` faz o checkout de um PullRequest.
+- `git stash` Guarda as alterações do _Working Directory_. Permite fazer o rebase, marge e trocar de branch sem a necessidade de fazer um commit.
+- `git stash list` Lista os stashes.
+- `git stash pop` Aplica o último stash.
+- `git cherrypick <commit>` Aplica as alteraçlões de um commit na branch atual.
+
+### .gitignore
+- Configura os arquivos que devem ser ignorados.
+- Contém arquivos, caminhos e patterns.
+
+> - `.project, .jar, .zip` Ignora arquivos com uma determinada extenção.
+> - `.[jw]ar` Usa uma expressão regular para ignorar arquivos de uma determinada extenção.
+> - `dist/` Ignora diretórios.
+> - `**/log/` Ignora qualquer diretório que tenha um subdiretório semenhante ao específicado.
+> - `**/*.css` Ignora qualquer caminho que termina com um arquivo de uma determinada.

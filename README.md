@@ -1,6 +1,19 @@
-# Curso de git
+- [1. Curso de git](#1-curso-de-git)
+  - [1.1. Principais Conceitos](#11-principais-conceitos)
+  - [1.2. Serviços Fundamentais](#12-serviços-fundamentais)
+  - [1.3. Níveis de Configuração](#13-níveis-de-configuração)
+  - [1.4. Workflow](#14-workflow)
+  - [1.5. Estados dos Arquivos](#15-estados-dos-arquivos)
+  - [1.6. Comandos](#16-comandos)
+    - [1.6.1. Configuração Básica](#161-configuração-básica)
+    - [1.6.2. Comandos Básicos](#162-comandos-básicos)
+    - [1.6.3. Histórico e Conflitos](#163-histórico-e-conflitos)
+    - [1.6.4. Branching, Merge e Rebase](#164-branching-merge-e-rebase)
+    - [1.6.5. .gitignore](#165-gitignore)
 
-## Principais Conceitos
+# 1. Curso de git
+
+## 1.1. Principais Conceitos
 
 - **Commit:** Realiza uma mudança no projeto; mais específicamente, armazena uma mudança no banco de dados de uma forma que possa ser incorporada em versões futuras.
 - **Update:** Solicitar que as mudança dos demais commits sejam incorporadas em sua cópia local do projeto. 
@@ -18,7 +31,7 @@
 - **Fetch:** Baixa as atualizações do remoto, mas não aplica elas.
 - **Tags:** Uteis para definir versões do projeto, semelhante as branches porém não recebe mais commits, guardando um estado do repositório.
 
-## Serviços Fundamentais
+## 1.2. Serviços Fundamentais
 
 - Registro da evolução do projeto;
 - Controle de concorrência;
@@ -31,7 +44,8 @@ Serve para:
 2. Controlar a concorrência de edição;
 3. Manter váriações do projeto.
 
-## Níveis de Configuração
+## 1.3. Níveis de Configuração
+
 - **Sistema:** É o mais abrangente vale para todos os usuários e repositórios, geralmente é usado em servidores de repositórios.
 - **Global:** Vale para todos os repositórios do usuário, a configuração deste nível sobreescreve a configuração de sistemas.
 - **Local:** É o mais específico e vale apenas para o repositório que está sendo usado, sobreescrevendo as configurações dos outros níveis. A configuração do nível local costuma ser gerada automaticamente durante a clonagem ou inicialização do repositório, geralmente contém o caminho original para o repositório que é usado na sincronização de repositórios e etc.
@@ -41,12 +55,14 @@ Serve para:
 > - **Global:** `$HOME/.gitconfig`
 > - **Local:** `/etc/gitconfig`
 
-## Workflow
+## 1.4. Workflow
+
 - Editar
 - Commitar
 - Sincronizar com o repositório
 
-## Estados dos Arquivos
+## 1.5. Estados dos Arquivos
+
 | Estado         | Stage     |
 |:--------------:|:---------:|
 | Não Monitorado | Untracked |
@@ -54,9 +70,9 @@ Serve para:
 | Preparado      | Staged    |
 | Consolidado    | Commited  |
 
-## Comandos
+## 1.6. Comandos
 
-### Configuração Básica
+### 1.6.1. Configuração Básica
 
 - `git config --global user.name nome` Definir nome do usuário.
 - `git config --global user.email email@email.com` Definir e-mail do usuário.
@@ -65,7 +81,7 @@ Serve para:
 - `git config --list --global` Lista todas as configurações globais.
 - `git config --global --edit` Abre o arquivo de configurações para edição.
 
-### Comandos Básicos
+### 1.6.2. Comandos Básicos
 
 - `git init <repositório>` Inicializa um novo repositório.
 - `git status` Mostra o estado dos arquivos dentro do repositório.
@@ -80,7 +96,7 @@ Serve para:
 - `git diff HEAD~1` Mostra as diferenças da versão atual (HEAD) com a versão anterior.
 - `git blame <arquivo>` Mostra as alterações feitas em um arquivo linha por linha. Mostra o autor e o commit onde foi feita aquela linha.
 
-### Histórico e Conflitos
+### 1.6.3. Histórico e Conflitos
 
 - `git clone https://github.com/usuario/repositorio.git` Baixa o repositório remoto, serve como uma maneira alternativa de inicializar um repositório e já vem com o remote configurado.
 - `git pull` Baixa as alterações do repositório remoto que não se encontram no repositório local. *mantem o repositório sincronizado com os ultimos commits de uma branch*.
@@ -93,8 +109,8 @@ Serve para:
   - `git reset --mixed` Ignora o commit, mas o arquivo estará no estado de modified
   - `git reset --hard` Ignora tudo no commit.
 
-### Branching, Merge e Rebase
-
+### 1.6.4. Branching, Merge e Rebase
+  
 - `git branch` Lista todas as branches.
 - `git branch <nome>` Cria uma nova branch.
 - `git branch -d <nome>` Remove uma branch.
@@ -110,12 +126,12 @@ Serve para:
 - `git stash pop` Aplica o último stash.
 - `git cherrypick <commit>` Aplica as alteraçlões de um commit na branch atual.
 
-### .gitignore
+### 1.6.5. .gitignore
+
 - Configura os arquivos que devem ser ignorados.
 - Contém arquivos, caminhos e patterns.
-
-> - `.project, .jar, .zip` Ignora arquivos com uma determinada extenção.
-> - `.[jw]ar` Usa uma expressão regular para ignorar arquivos de uma determinada extenção.
-> - `dist/` Ignora diretórios.
-> - `**/log/` Ignora qualquer diretório que tenha um subdiretório semenhante ao específicado.
-> - `**/*.css` Ignora qualquer caminho que termina com um arquivo de uma determinada.
+  - `.project, .jar, .zip` Ignora arquivos com uma determinada extenção.
+  - `.[jw]ar` Usa uma expressão regular para ignorar arquivos de uma determinada extenção.
+  - `dist/` Ignora diretórios.
+  - `**/log/` Ignora qualquer diretório que tenha um subdiretório semenhante ao específicado.
+  - `**/*.css` Ignora qualquer caminho que termina com um arquivo de uma determinada.

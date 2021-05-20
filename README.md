@@ -1,17 +1,39 @@
 - [1. Curso de git](#1-curso-de-git)
+  - [O que é?](#o-que-é)
+  - [Como instalar?](#como-instalar)
   - [1.1. Principais Conceitos](#11-principais-conceitos)
   - [1.2. Serviços Fundamentais](#12-serviços-fundamentais)
   - [1.3. Níveis de Configuração](#13-níveis-de-configuração)
+  - [Arquivos de configuração (Linux)](#arquivos-de-configuração-linux)
   - [1.4. Workflow](#14-workflow)
   - [1.5. Estados dos Arquivos](#15-estados-dos-arquivos)
   - [1.6. Comandos](#16-comandos)
     - [1.6.1. Configuração Básica](#161-configuração-básica)
     - [1.6.2. Comandos Básicos](#162-comandos-básicos)
+    - [Repositórios Remotos](#repositórios-remotos)
     - [1.6.3. Histórico e Conflitos](#163-histórico-e-conflitos)
     - [1.6.4. Branching, Merge e Rebase](#164-branching-merge-e-rebase)
+    - [Dicas de branching (Gitflow)](#dicas-de-branching-gitflow)
     - [1.6.5. .gitignore](#165-gitignore)
+    - [Dicas e Boas práticas](#dicas-e-boas-práticas)
 
 # 1. Curso de git
+
+## O que é?
+
+Git é um sistema de controle de versão open-source, ou seja, gratuito. Ele é utilizado para a criação de um histórico de alterações em código-fonte de projetos de desenvolvimento de software. Foi desenvolvido por Linus Torvalds, o criador do sistema operacional Linux.
+
+Através dele podemos desenvolver projetos na qual diversas pessoas podem contribuir simultaneamente no mesmo, editando e criando novos arquivos e permitindo que os mesmos possam existir sem o risco de suas alterações serem sobrescritas, além de saber quais foram as alterações realizadas, quem fez cada uma das alterações e baixar essas mudanças em nossa máquina. E caso seja necessário, revertê-las para uma versão anterior.
+
+## Como instalar?
+
+* Windows: https://git-scm.com/download/windows
+* MacOs: `$ brew install git`
+* Debian/Ubuntu: `$ apt-get install git`
+* Fedora: `$ dnf install git`
+* Gentoo: `$ emerge --ask --verbose dev-vcs/git`
+* Arch Linux: `$ pacman -S git`
+* openSUSE: `$ zypper install git`
 
 ## 1.1. Principais Conceitos
 
@@ -50,10 +72,11 @@ Serve para:
 - **Global:** Vale para todos os repositórios do usuário, a configuração deste nível sobreescreve a configuração de sistemas.
 - **Local:** É o mais específico e vale apenas para o repositório que está sendo usado, sobreescrevendo as configurações dos outros níveis. A configuração do nível local costuma ser gerada automaticamente durante a clonagem ou inicialização do repositório, geralmente contém o caminho original para o repositório que é usado na sincronização de repositórios e etc.
 
-> **Arquivos de configuração (Linux)**
-> - **Local:** `repositório/.git/config`
-> - **Global:** `$HOME/.gitconfig`
-> - **Local:** `/etc/gitconfig`
+## Arquivos de configuração (Linux)
+
+- **Local:** `repositório/.git/config`
+- **Global:** `$HOME/.gitconfig`
+- **Sistema:** `/etc/gitconfig`
 
 ## 1.4. Workflow
 
@@ -80,21 +103,31 @@ Serve para:
 - `git config --list` Listar todas as configurações
 - `git config --list --global` Lista todas as configurações globais.
 - `git config --global --edit` Abre o arquivo de configurações para edição.
+- `git config --global credential.helper store` Salva as credênciais do git.
 
 ### 1.6.2. Comandos Básicos
 
-- `git init <repositório>` Inicializa um novo repositório.
+- `git init` Inicializa um novo repositório.
+- `git init --bare` indica que é um repositório "puro", ou seja, com tém apenas as alterações dos arquivos, e não uma cópia deles
 - `git status` Mostra o estado dos arquivos dentro do repositório.
 - `git log` Lista todos commits feitos no repositório.
 - `git log --graph` Lista todos commits feitos no repositório junto com a reprentação dos branches.
 - `git show commit` Mostra as informaçãoes do commit.
-- `git add` Adiciona arquivos para o estado de staged.
-- `git commit` Guarda uma versão para o repositório.
+- `git add <arquivo>` Adiciona determinado arquivo para o estado de staged.
+- `git add .` Adiciona todos os arquivos para o estado de staged.
+- `git commit -m "mensagem"` Guarda uma versão para o repositório.
 - `git commit --amend` Altera o último commit, tanto a mensagem de commit quanto a adição de arquivos.
 - `git push` Envia os commits para um repositório remoto.
 - `git diff` Apresenta as diferenças entre commits.
 - `git diff HEAD~1` Mostra as diferenças da versão atual (HEAD) com a versão anterior.
 - `git blame <arquivo>` Mostra as alterações feitas em um arquivo linha por linha. Mostra o autor e o commit onde foi feita aquela linha.
+
+### Repositórios Remotos
+
+- `git remote` Lista o nome dos repostórios remotos configurados para o repositŕio local.
+- `git remote -v` Lista o nome dos repostórios remotos configurados para o repositŕio local, e mostra os endereços de cada remoto.
+- `git remote add <nome> <local>` Adiciona um repositório remoto. O local pode ser uma URL, o IP de uma máquina na rede ou até um diretório local.
+- `git remote rename <nome atual> <novo nome>` Renomeia o repositório remoto.
 
 ### 1.6.3. Histórico e Conflitos
 
@@ -108,6 +141,12 @@ Serve para:
   - `git reset --soft` Ignora o commit, mas as modificações no arquivo continuarão e o mesmo se encontra no estado de staged.
   - `git reset --mixed` Ignora o commit, mas o arquivo estará no estado de modified
   - `git reset --hard` Ignora tudo no commit.
+- `git bisect` Faz a busca entre determinados commits em que a alteração desejada foi alterada
+  - `git bisect start` Inicia a busca
+  - `git bisect bad <commit>` Estado em que o código possuí algum bug ou erro (Inicio da busca)
+  - `git bisect good <commit>` Informa o estado desejado
+  - `git bisect bad` Informa o estado não é desejado
+  - `git bisect reset` retorna para a branch
 
 ### 1.6.4. Branching, Merge e Rebase
   
@@ -117,6 +156,8 @@ Serve para:
 - `git checkout <branch>` Altera para uma branch.
 - `git merge <branch>` Faz o merge entre as branches.
 - `git rebase <branch>` Faz o rebase entre as branches.
+- `git rebase --continue` Passa para o próximo commit (caso tenha mais conflitos)
+- `git rebase --abort` Aborta todo o processo de rebase
 - `git fetch` Faz o fetch no repositório.
 - `git tag [nome tag]` Cria uma tag.
 - `git push <remoto> <tag>` Envia a tag para o repositório remoto.
@@ -124,7 +165,17 @@ Serve para:
 - `git stash` Guarda as alterações do _Working Directory_. Permite fazer o rebase, marge e trocar de branch sem a necessidade de fazer um commit.
 - `git stash list` Lista os stashes.
 - `git stash pop` Aplica o último stash.
-- `git cherrypick <commit>` Aplica as alteraçlões de um commit na branch atual.
+- `git cherry-pick <commit>` Aplica as alterações de um commit na branch atual.
+
+### Dicas de branching (Gitflow)
+
+![gitflow](https://caelum-online-public.s3.amazonaws.com/1276+-+Git+e+Github+pt+2/transcri%C3%A7%C3%A3o/20180412-git-flow.png)
+
+- `master` Onde fica o código em produção
+- `development` Onde todas as novas features são mergeadas 
+- `feature/<nome-da-feature>` Nessas branches, devem ser adicionadas as novas funcionalidades do sistema, que no fim, irão para `development`.
+- `hotfix/<versão>` Onde será criado as correções de bugs que ocorrem na produção, por padrão essas branches partem da `master`.
+- `release/<versão>` Onde será enviado o código de homologação.
 
 ### 1.6.5. .gitignore
 
@@ -135,3 +186,14 @@ Serve para:
   - `dist/` Ignora diretórios.
   - `**/log/` Ignora qualquer diretório que tenha um subdiretório semenhante ao específicado.
   - `**/*.css` Ignora qualquer caminho que termina com um arquivo de uma determinada.
+
+
+### Dicas e Boas práticas
+
+- Nunca faça o commit de um código que não funciona.
+- Um commit pode ser realizando quando:
+  - Um bug for solucionado
+  - Uma feature foi adicionada
+  - Após a realização de uma tarefa
+  - No fim do dia
+    - Todas esses cenários são válidos desde que o código esteja em funcionamento
